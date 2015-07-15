@@ -1,4 +1,4 @@
-var socket = io('localhost:3000');
+var socket = io();
 var motionObj = [];
 
 socket.on('ballMovement', function(movementObj){
