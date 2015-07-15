@@ -1,10 +1,10 @@
 var socket = io();
 var motionArr = {};
 
-socket.on('ballMovement', function(movementObj){
-	console.log(movementObj);
-	sphere.style.top = movementObj.top + "px";
-	sphere.style.left = movementObj.left + "px";
+socket.on('ballMovement', function(movementArr){
+	console.log(movementArr);
+	sphere.style.top = movementArr[0] + "px";
+	sphere.style.left = movementArr[1] + "px";
 });
 
 var  x = 0, y = 0,
