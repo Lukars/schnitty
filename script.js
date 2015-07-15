@@ -45,7 +45,7 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		motionArr[0] = y;
 		motionArr[1] = x;
-		//socket.emit('motion', motionArr);
+		socket.emit('motion', motionArr);
 	}, 250);
 } 
 
