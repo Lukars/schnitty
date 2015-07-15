@@ -1,11 +1,11 @@
 var socket = io();
 var motionArr = {};
 
-// socket.on('ballMovement', function(movementArr){
-// 	console.log(movementArr);
-// 	sphere.style.top = movementArr[0] + "px";
-// 	sphere.style.left = movementArr[1] + "px";
-// });
+socket.on('ballMovement', function(movementArr){
+	console.log(movementArr);
+	sphere.style.top = movementArr[0] + "px";
+	sphere.style.left = movementArr[1] + "px";
+});
 
 var  x = 0, y = 0,
     vx = 0, vy = 0,
@@ -45,8 +45,8 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		motionArr[0] = y;
 		motionArr[1] = x;
-		socket.emit('motion', motionArr);
-	}, 250);
+		//socket.emit('motion', motionArr);
+	}, 500);
 } 
 
 function boundingBoxCheck(){
