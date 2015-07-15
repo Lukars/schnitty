@@ -5,8 +5,8 @@ var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
 	
-	socket.on('motion', function(motionObj){
-		console.log(motionObj);
+	socket.on('motion', function(motionArr){
+		console.log(motionArr);
 	});
 
 });

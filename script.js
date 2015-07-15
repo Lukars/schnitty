@@ -1,5 +1,5 @@
 var socket = io();
-var motionObj = [];
+var motionArr = {};
 
 socket.on('ballMovement', function(movementObj){
 	console.log(movementObj);
@@ -16,14 +16,14 @@ if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
 		ax = event.accelerationIncludingGravity.x * 5;
 		ay = event.accelerationIncludingGravity.y * 5;
-		// motionObj.accelerationX = e.accelerationIncludingGravity.x;
-		// motionObj.accelerationY = e.accelerationIncludingGravity.y;
-		// motionObj.accelerationZ = e.accelerationIncludingGravity.z;
+		// motionArr.accelerationX = e.accelerationIncludingGravity.x;
+		// motionArr.accelerationY = e.accelerationIncludingGravity.y;
+		// motionArr.accelerationZ = e.accelerationIncludingGravity.z;
 
 		// if ( e.rotationRate ) {
-		// 	motionObj.rotationAlpha = e.rotationRate.alpha;
-		// 	motionObj.rotationBeta = e.rotationRate.beta;
-		// 	motionObj.rotationGamma = e.rotationRate.gamma;
+		// 	motionArr.rotationAlpha = e.rotationRate.alpha;
+		// 	motionArr.rotationBeta = e.rotationRate.beta;
+		// 	motionArr.rotationGamma = e.rotationRate.gamma;
 		// }		
 	}
 
@@ -43,9 +43,9 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		boundingBoxCheck();
 		
-		motionObj.top = y;
-		motionObj.left = x;
-		socket.emit('motion', motionObj);
+		motionArr[0] = y;
+		motionArr[1] = x;
+		socket.emit('motion', motionArr);
 	}, 25);
 } 
 
