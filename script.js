@@ -56,3 +56,13 @@ function boundingBoxCheck(){
 	if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
 	
 }
+
+var button1 = document.getElementById('lebutton');
+button1.onlcick = function (){
+	socket.emit('start', true);
+}
+
+var button2 = document.getElementById('restartbutton');
+button2.onlcick = function (){
+	socket.emit('restart', true);
+}
