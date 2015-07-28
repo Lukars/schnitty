@@ -1,6 +1,16 @@
 var socket = io();
 var motionArr = {};
 
+var button1 = document.getElementById('lebutton');
+button1.addEventListener('click', function(event) {
+	socket.emit('start', true);
+};
+
+var button2 = document.getElementById('restartbutton');
+button2.addEventListener('click', function(event) {
+	socket.emit('restart', true);
+};
+
 socket.on('ballMovement', function(movementArr){
 	console.log(movementArr);
 	sphere.style.top = movementArr[0] + "px";
@@ -47,7 +57,7 @@ if (window.DeviceMotionEvent != undefined) {
 		motionArr[1] = x;
 		socket.emit('motion', motionArr);
 	}, 35);
-} 
+}; 
 
 function boundingBoxCheck(){
 	if (x<0) { x = 0; vx = -vx; }
@@ -55,14 +65,4 @@ function boundingBoxCheck(){
 	if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
 	if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
 	
-};
-
-var button1 = document.getElementById('lebutton');
-button1.addEventListener('click', function(event) {
-	socket.emit('start', true);
-};
-
-var button2 = document.getElementById('restartbutton');
-button2.addEventListener('click', function(event) {
-	socket.emit('restart', true);
 };
