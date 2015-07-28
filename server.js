@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket){
 	
 	socket.on('motion', function(motionArr){
-		console.log(motionArr);
+		//console.log(motionArr);
 		io.emit('ballMovement', motionArr);
 	});
 
