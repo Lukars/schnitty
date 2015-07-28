@@ -10,8 +10,8 @@ io.on('connection', function(socket){
 		io.emit('ballMovement', motionArr);
 	});
 
-	socket.on('start', function (){
-		console.log("start game button pressed");
+	socket.on('start', function (msg){
+		console.log("start game button pressed", msg);
 		io.emit('startgame', 'true');
 	});
 
