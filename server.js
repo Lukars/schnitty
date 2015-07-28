@@ -11,13 +11,13 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('start', function (){
-		io.emit('startgame', true);
+		io.emit('startgame', 'true');
 		console.log("start game button pressed");
 
 	});
 
 	socket.on('restart', function (){
-		io.emit('restartgame', true);
+		io.emit('restartgame', 'true');
 		console.log("restart game button pressed");
 	});
 
