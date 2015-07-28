@@ -4,12 +4,12 @@ var motionArr = {};
 var button1 = document.getElementById('startbutton');
 var button2 = document.getElementById('restartbutton');
 
-button1.addEventListener('click', function(event) {
+button1.onclick = function() {
 	console.log("was geht ab");
 	socket.emit('start', 'true');
-});
+};
 
-button2.addEventListener('click', function(event) {
+button2.onclick = function() {
 	socket.emit('restart', 'true');
 });
 
