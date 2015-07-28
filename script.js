@@ -2,14 +2,15 @@ var socket = io();
 var motionArr = {};
 
 var button1 = document.getElementById('lebutton');
+var button2 = document.getElementById('restartbutton');
+
 button1.addEventListener('click', function(event) {
 	socket.emit('start', true);
-};
+});
 
-var button2 = document.getElementById('restartbutton');
 button2.addEventListener('click', function(event) {
 	socket.emit('restart', true);
-};
+});
 
 socket.on('ballMovement', function(movementArr){
 	console.log(movementArr);
