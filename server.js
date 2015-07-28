@@ -6,16 +6,19 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket){
 	
 	socket.on('motion', function(motionArr){
-		//console.log(motionArr);
+		console.log(motionArr);
 		io.emit('ballMovement', motionArr);
 	});
 
 	socket.on('start', function (){
 		io.emit('startgame', true);
+		console.log("start game button pressed");
+
 	});
 
 	socket.on('restart', function (){
 		io.emit('restartgame', true);
+		console.log("restart game button pressed");
 	});
 
 });
