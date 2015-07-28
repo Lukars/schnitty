@@ -11,9 +11,8 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('start', function (){
-		io.emit('startgame', 'true');
 		console.log("start game button pressed");
-
+		io.emit('startgame', 'true');
 	});
 
 	socket.on('restart', function (){
