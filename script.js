@@ -55,14 +55,14 @@ function boundingBoxCheck(){
 	if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
 	if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
 	
-}
+};
 
 var button1 = document.getElementById('lebutton');
-button1.onlcick = function (){
+button1.addEventListener('click', function(event) {
 	socket.emit('start', true);
-}
+};
 
 var button2 = document.getElementById('restartbutton');
-button2.onlcick = function (){
+button2.addEventListener('click', function(event) {
 	socket.emit('restart', true);
-}
+};
