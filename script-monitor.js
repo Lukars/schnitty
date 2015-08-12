@@ -181,8 +181,8 @@ function update() {
 	// Move the paddles on mouse move
 	if(mouse.x && mouse.y) {
 		socket.on('ballMovement', function(movementArr){
-			mouse.y = movementArr['x'];
-			console.log(nouse.x);
+			mouse.x = movementArr['x'];
+			console.log(mouse.x);
 			//mouse.y = movementArr['y'];
 		});
 		for(var i = 1; i < paddles.length; i++) {
