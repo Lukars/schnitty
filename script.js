@@ -1,23 +1,12 @@
 var socket = io();
 var motionArr = {};
 
-var button1 = document.getElementById('startbutton');
-var button2 = document.getElementById('restartbutton');
 
-button1.onclick = function() {
-	console.log("was geht ab");
-	socket.emit('start', 'true');
-};
-
-button2.onclick = function() {
-	socket.emit('restart', 'true');
-};
-
-socket.on('ballMovement', function(movementArr){
-	console.log(movementArr);
-	sphere.style.top = movementArr[0] + "px";
-	sphere.style.left = movementArr[1] + "px";
-});
+// socket.on('ballMovement', function(movementArr){
+// 	console.log(movementArr);
+// 	sphere.style.top = movementArr[0] + "px";
+// 	sphere.style.left = movementArr[1] + "px";
+// });
 
 var  x = 0, y = 0,
     vx = 0, vy = 0,
@@ -27,16 +16,7 @@ var  x = 0, y = 0,
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
 		ax = event.accelerationIncludingGravity.x * 5;
-		ay = event.accelerationIncludingGravity.y * 5;
-		// motionArr.accelerationX = e.accelerationIncludingGravity.x;
-		// motionArr.accelerationY = e.accelerationIncludingGravity.y;
-		// motionArr.accelerationZ = e.accelerationIncludingGravity.z;
-
-		// if ( e.rotationRate ) {
-		// 	motionArr.rotationAlpha = e.rotationRate.alpha;
-		// 	motionArr.rotationBeta = e.rotationRate.beta;
-		// 	motionArr.rotationGamma = e.rotationRate.gamma;
-		// }		
+		ay = event.accelerationIncludingGravity.y * 5;	
 	}
 
 	setInterval( function() {
