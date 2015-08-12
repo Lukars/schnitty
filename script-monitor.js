@@ -168,15 +168,17 @@ function increaseSpd() {
 	}
 }
 
+socket.on('ballMovement', function(movementArr){
+	console.log(movementArr['x']);
+	mouse.x = movementArr['x'];
+	//mouse.y = movementArr['y'];
+});
+
 
 // Function to update positions, score and everything.
 // Basically, the main game logic is defined here
 function update() {
-	socket.on('ballMovement', function(movementArr){
-	//console.log(movementArr);
-	mouse.x = movementArr['x'];
-	mouse.y = movementArr['y'];
-});
+	
 	// Update scores
 	updateScore(); 
 	
