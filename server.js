@@ -7,7 +7,7 @@ io.on('connection', function(socket){
 	
 	socket.on('motion', function(motionArr){
 		console.log(motionArr);
-		io.emit('ballMovement', motionArr);
+		io.emit('motion', motionArr);
 	});
 
 	socket.on('start', function (msg){
