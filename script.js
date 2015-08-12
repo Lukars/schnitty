@@ -6,7 +6,7 @@ var  x = 0, y = 0,
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
-		ax = event.accelerationIncludingGravity.x * 35;
+		ax = event.accelerationIncludingGravity.x * 45 * -1 * vx * vx;
 		ay = event.accelerationIncludingGravity.y * 35;	
 	}
 
@@ -19,7 +19,7 @@ if (window.DeviceMotionEvent != undefined) {
 			vy = vy - ay;
 			vx = vx + ax;
 		}
-		vx = vx * 1.1;
+		vx = vx * 0.98;
 		//console.log(vx);
 		vy = vy * 0.98;
 		y = parseInt(y + vy / 50);
