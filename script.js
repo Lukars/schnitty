@@ -34,8 +34,8 @@ if (window.DeviceMotionEvent != undefined) {
 function boundingBoxCheck(){
 	if (x<0) { x = 0; vx = -vx; }
 	if (y<0) { y = 0; vy = -vy; }
-	//if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
-	//if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
+	if (x>document.documentElement.clientWidth-75) { x = document.documentElement.clientWidth-75; vx = 0; }
+	if (y>document.documentElement.clientHeight-75) { y = document.documentElement.clientHeight-75; vy = 0; }
 	
 };
 
