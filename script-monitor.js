@@ -182,7 +182,7 @@ function update() {
 	if(mouse.x && mouse.y) {
 		socket.on('ballMovement', function(movementArr){
 			mouse.x = movementArr['x'];
-			console.log(mouse.x);
+			console.log(movementArr['x']);
 			//mouse.y = movementArr['y'];
 		});
 		for(var i = 1; i < paddles.length; i++) {
