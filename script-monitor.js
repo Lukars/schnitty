@@ -168,11 +168,7 @@ function increaseSpd() {
 	}
 }
 
-socket.on('ballMovement', function(movementArr){
-	console.log(movementArr['x']);
-	mouse.x = movementArr['x'];
-	//mouse.y = movementArr['y'];
-});
+
 
 
 // Function to update positions, score and everything.
@@ -184,6 +180,11 @@ function update() {
 	
 	// Move the paddles on mouse move
 	if(mouse.x && mouse.y) {
+		socket.on('ballMovement', function(movementArr){
+			mouse.x = movementArr['x'];
+			console.log(nouse.x);
+			//mouse.y = movementArr['y'];
+		});
 		for(var i = 1; i < paddles.length; i++) {
 			p = paddles[i];
 			p.x = mouse.x - p.w/2;
