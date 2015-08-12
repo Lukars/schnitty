@@ -6,8 +6,8 @@ var  x = 0, y = 0,
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
-		ax = event.accelerationIncludingGravity.x * 5;
-		ay = event.accelerationIncludingGravity.y * 5;	
+		ax = event.accelerationIncludingGravity.x * 25;
+		ay = event.accelerationIncludingGravity.y * 25;	
 	}
 
 	setInterval( function() {
@@ -21,8 +21,8 @@ if (window.DeviceMotionEvent != undefined) {
 		}
 		vx = vx * 0.98;
 		vy = vy * 0.98;
-		y = parseInt(y + vy / 150);
-		x = parseInt(x + vx / 150);
+		y = parseInt(y + vy / 50);
+		x = parseInt(x + vx / 50);
 		
 		boundingBoxCheck();
 		
