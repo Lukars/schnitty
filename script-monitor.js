@@ -180,7 +180,6 @@ function update() {
 	//Get motion from mobile
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
-		console.log(motionX);
 	});
 	
 	// Move the paddles on mouse move
