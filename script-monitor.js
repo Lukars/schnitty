@@ -170,8 +170,8 @@ function increaseSpd() {
 
 socket.on('ballMovement', function(movementArr){
 	//console.log(movementArr);
-	mouse.x = movementArr[0];
-	mouse.y = movementArr[1];
+	mouse.x = movementArr['x'];
+	mouse.y = movementArr['y'];
 });
 
 

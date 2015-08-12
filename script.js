@@ -26,8 +26,8 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		boundingBoxCheck();
 		
-		//motionArr[y] = y;
-		motionArr[x] = x;
+		//motionArr['y'] = y;
+		motionArr['x'] = x;
 		socket.emit('motion', motionArr);
 	}, 100);
 }; 
