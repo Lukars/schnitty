@@ -19,8 +19,8 @@ if (window.DeviceMotionEvent != undefined) {
 			vy = vy - ay;
 			vx = vx + ax;
 		}
-		vx = vx * 0.98;
-		console.log(vx);
+		vx = vx * 1.98;
+		//console.log(vx);
 		vy = vy * 0.98;
 		y = parseInt(y + vy / 50);
 		x = parseInt(x + vx / 50);
