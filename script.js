@@ -11,7 +11,7 @@ button1.onclick = function() {
 
 button2.onclick = function() {
 	socket.emit('restart', 'true');
-});
+};
 
 socket.on('ballMovement', function(movementArr){
 	console.log(movementArr);
