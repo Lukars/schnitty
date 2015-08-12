@@ -361,7 +361,6 @@ function startScreen() {
 }
 
 // On button click (Restart and start)
-function btnClick(e) {
 	
 
 // Click start button
@@ -374,9 +373,9 @@ function btnClick(e) {
 	} );
 	
 	// If the game is over, and the restart button is clicked
-	if(over == 1) {
 		
 	socket.on('restartgame', function (){
+		if(over == 1) {
 		console.log('restarting game');
 			ball.x = 20;
 			ball.y = 20;
@@ -388,7 +387,6 @@ function btnClick(e) {
 			over = 0;
 		});
 	}
-}
 
 // Show the start screen
 startScreen();

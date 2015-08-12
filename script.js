@@ -39,3 +39,13 @@ function boundingBoxCheck(){
 	if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
 	
 };
+
+// motionArr.accelerationX = e.accelerationIncludingGravity.x;
+// motionArr.accelerationY = e.accelerationIncludingGravity.y;
+// motionArr.accelerationZ = e.accelerationIncludingGravity.z;
+
+// if ( e.rotationRate ) {
+// 	motionArr.rotationAlpha = e.rotationRate.alpha;
+// 	motionArr.rotationBeta = e.rotationRate.beta;
+// 	motionArr.rotationGamma = e.rotationRate.gamma;
+// }	
