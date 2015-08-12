@@ -368,7 +368,7 @@ function btnClick(e) {
 	
 	socket.on('startgame', function (){
 		animloop();
-		
+		console.log('starting game');
 		// Delete the start button after clicking it
 		startBtn = {};
 	} );
@@ -377,6 +377,7 @@ function btnClick(e) {
 	if(over == 1) {
 		
 	socket.on('restartgame', function (){
+		console.log('restarting game');
 			ball.x = 20;
 			ball.y = 20;
 			points = 0;
