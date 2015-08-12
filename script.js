@@ -20,6 +20,7 @@ if (window.DeviceMotionEvent != undefined) {
 			vx = vx + ax;
 		}
 		vx = vx * 0.98;
+		console.log(vx);
 		vy = vy * 0.98;
 		y = parseInt(y + vy / 50);
 		x = parseInt(x + vx / 50);
@@ -34,8 +35,8 @@ if (window.DeviceMotionEvent != undefined) {
 function boundingBoxCheck(){
 	if (x<0) { x = 0; vx = -vx; }
 	if (y<0) { y = 0; vy = -vy; }
-	if (x>document.documentElement.clientWidth-75) { x = document.documentElement.clientWidth-75; vx = 0; }
-	if (y>document.documentElement.clientHeight-75) { y = document.documentElement.clientHeight-75; vy = 0; }
+	if (x>document.documentElement.clientWidth-150) { x = document.documentElement.clientWidth-150; vx = 0; }
+	if (y>document.documentElement.clientHeight-150) { y = document.documentElement.clientHeight-150; vy = 0; }
 	
 };
 
