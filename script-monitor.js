@@ -178,9 +178,9 @@ function update() {
 	// Update scores
 	updateScore(); 
 	//Get motion from mobile
-	socket.on('motion', function(movementArr){
-		mouse.x = movementArr[x];
-		console.log(movementArr);
+	socket.on('motion', function(motionX){
+		mouse.x = motionX;
+		console.log(motionX);
 	});
 	
 	// Move the paddles on mouse move

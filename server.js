@@ -5,9 +5,9 @@ var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
 	
-	socket.on('motion', function(motionArr){
-		console.log(motionArr);
-		io.emit('motion', motionArr);
+	socket.on('motion', function(motionX){
+		console.log(motionX);
+		io.emit('motion', motionX);
 	});
 
 	socket.on('start', function (msg){
