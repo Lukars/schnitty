@@ -28,7 +28,7 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		motionX = x;
 		socket.emit('motion', motionX);
-	}, 1000);
+	}, 100);
 }; 
 
 function boundingBoxCheck(){
