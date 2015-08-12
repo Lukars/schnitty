@@ -177,13 +177,14 @@ function update() {
 	
 	// Update scores
 	updateScore(); 
+	//Get motion from mobile
+	socket.on('motion', function(movementArr){
+		mouse.x = movementArr[x];
+		console.log(movementArr);
+	});
 	
 	// Move the paddles on mouse move
 	if(mouse.x && mouse.y) {
-		socket.on('motion', function(movementArr){
-			mouse.x = movementArr[x];
-			console.log(movementArr);
-		});
 		for(var i = 1; i < paddles.length; i++) {
 			p = paddles[i];
 			p.x = mouse.x - p.w/2;
