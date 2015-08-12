@@ -381,7 +381,7 @@ function startScreen() {
 			ball.y = 20;
 			points = 0;
 			ball.vx = 2;
-			ball.vy = 8;
+			ball.vy = 2;
 			animloop();
 			
 			over = 0;
