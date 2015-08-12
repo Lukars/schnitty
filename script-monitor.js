@@ -385,8 +385,8 @@ function startScreen() {
 			animloop();
 			
 			over = 0;
-		});
-	}
+		}
+	});
 
 // Show the start screen
 startScreen();
