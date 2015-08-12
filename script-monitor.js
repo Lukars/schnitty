@@ -184,7 +184,7 @@ function update() {
 	});
 	
 	// Move the paddles on mouse move
-	if(mouse.x && mouse.y) {
+	if(mouse.x) {
 		for(var i = 1; i < paddles.length; i++) {
 			p = paddles[i];
 			p.x = mouse.x - p.w/2;
