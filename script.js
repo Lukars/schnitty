@@ -6,8 +6,8 @@ var  x = 0, y = 0,
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
-		ax = event.accelerationIncludingGravity.x * 25;
-		ay = event.accelerationIncludingGravity.y * 25;	
+		ax = event.accelerationIncludingGravity.x * 2;
+		ay = event.accelerationIncludingGravity.y * 2;	
 	}
 
 	setInterval( function() {
