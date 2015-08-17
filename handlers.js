@@ -10,24 +10,12 @@ handlers.generic = function (req,res){
 	if(req.url === '/'){
 
 		var ua = req.headers['user-agent'],
-	    	$ = {};
-	    console.log(ua);
-	    
-		if (/mobile/i.test(ua)){
-			$.Mobile = true;
+
+		if (ua.indexOf("Mobile") > -1){
 			req.url = '/index.html';
-
-		}
-		// if (/like Mac OS X/.test(ua)) {
-		//     $.iOS = /CPU( iPhone)? OS ([0-9\._]+) like Mac OS X/.exec(ua)[2].replace(/_/g, '.');
-		//     $.iPhone = /iPhone/.test(ua);
-		//     $.iPad = /iPad/.test(ua);
-		// }
-
-		// if (/Android/.test(ua))
-		//     $.Android = /Android ([0-9\.]+)[\);]/.exec(ua)[1];
-
+		} else {
 		req.url = '/monitor.html';
+		}
 	}
 
 	var ext = req.url.split('.')[1] || 'text';
