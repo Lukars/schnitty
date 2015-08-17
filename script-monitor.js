@@ -62,7 +62,7 @@ function paintCanvas() {
 function Paddle(pos) {
 	// Height and width
 	this.h = 5;
-	this.w = 150;
+	this.w = 250;
 	
 	// Paddle's position
 	this.x = W/2 - this.w/2;
