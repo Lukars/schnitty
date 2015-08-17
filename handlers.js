@@ -7,7 +7,7 @@ var handlers = {};
 //route handler for any request
 handlers.generic = function (req,res){
 
-	var ua = req.headers['user-agent'],
+	var ua = req.headers['user-agent'];
 
 	if(req.url === '/'){
 		if (ua.indexOf("Mobile") > -1){
