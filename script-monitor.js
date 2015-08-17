@@ -178,6 +178,7 @@ function update() {
 	updateScore(); 
 	//Get motion from mobile
 	socket.on('motion', function(motionX){
+		console.log(motionX);
 		mouse.x = motionX;
 	});
 	
