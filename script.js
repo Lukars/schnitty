@@ -26,13 +26,14 @@ if (window.DeviceMotionEvent != undefined) {
 		boundingBoxCheck();
 		
 		motionX = x;
-		socket.emit('player1', motionX);
+		socket.emit('motion', motionX);
 	}, 100);
 }; 
 
-	socket.on('width', function(width){
-		var browserWidth = width;
-	});
+socket.on('width', function(width){
+	var browserWidth = width;
+});
+
 function boundingBoxCheck(){
 	if (x<0) { x = 0; vx = -vx; }
 	if (y<0) { y = 0; vy = -vy; }
