@@ -109,7 +109,7 @@ startBtn = {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStlye = "white";
-		ctx.fillText("Start", W/2, H/2 );
+		ctx.fillText("To start open http://tiny.cc/schnitty in your mobile phone browser ( prevent screen rotation for better handling )", W/2, H/2 );
 	}
 };
 
