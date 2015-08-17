@@ -1,10 +1,5 @@
 var socket = io();
 
-document.addEventListener("DOMContentLoaded", function(event) { 
-	var browserWidth = document.documentElement.clientWidth;
-	socket.emit('width', browserWidth);
-});
-
 window.requestAnimFrame = (function(){
 	return  window.requestAnimationFrame       || 
 		window.webkitRequestAnimationFrame || 
@@ -104,7 +99,7 @@ startBtn = {
 		// ctx.lineWidth = "2";
 		// ctx.strokeRect(this.x, this.y, this.w, this.h);
 		
-		ctx.font = "18px Arial, sans-serif";
+		ctx.font = "24px Arial, sans-serif";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStlye = "white";
@@ -114,17 +109,17 @@ startBtn = {
 
 // Restart Button object
 restartBtn = {
-	w: 100,
-	h: 50,
+	w: 200,
+	h: 150,
 	x: W/2 - 50,
 	y: H/2 - 50,
 	
 	draw: function() {
 		ctx.strokeStyle = "white";
-		ctx.lineWidth = "2";
+		ctx.lineWidth = "5";
 		ctx.strokeRect(this.x, this.y, this.w, this.h);
 		
-		ctx.font = "18px Arial, sans-serif";
+		ctx.font = "24px Arial, sans-serif";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStlye = "white";
@@ -323,7 +318,7 @@ function emitParticles() {
 // Function for updating score
 function updateScore() {
 	ctx.fillStlye = "white";
-	ctx.font = "16px Arial, sans-serif";
+	ctx.font = "26px Arial, sans-serif";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Score: " + points, 20, 20 );
@@ -332,7 +327,7 @@ function updateScore() {
 // Function to run when the game overs
 function gameOver() {
 	ctx.fillStlye = "white";
-	ctx.font = "20px Arial, sans-serif";
+	ctx.font = "30px Arial, sans-serif";
 	ctx.textAlign = "center";
 	ctx.textBaseline = "middle";
 	ctx.fillText("Game Over - You scored "+points+" points!", W/2, H/2 + 25 );
@@ -356,6 +351,8 @@ function animloop() {
 
 // Function to execute at startup
 function startScreen() {
+	var browserWidth = document.documentElement.clientWidth;
+	socket.emit('width', browserWidth);
 	draw();
 	startBtn.draw();
 }
