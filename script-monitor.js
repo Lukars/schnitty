@@ -109,8 +109,8 @@ startBtn = {
 
 // Restart Button object
 restartBtn = {
-	w: 200,
-	h: 150,
+	w: 100,
+	h: 50,
 	x: W/2 - 50,
 	y: H/2 - 50,
 	
