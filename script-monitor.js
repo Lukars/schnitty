@@ -1,5 +1,9 @@
 var socket = io();
 
+document.addEventListener("DOMContentLoaded", function(event) { 
+	var browserWidth = document.documentElement.clientWidth;
+	socket.emit('width', browserWidth);
+});
 
 window.requestAnimFrame = (function(){
 	return  window.requestAnimationFrame       || 

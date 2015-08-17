@@ -19,6 +19,9 @@ io.on('connection', function(socket){
 		io.emit('restartgame', 'true');
 		console.log("restart game button pressed");
 	});
+	socket.on('width', function (msg){
+		io.emit('width', msg);
+	});
 
 });
 
