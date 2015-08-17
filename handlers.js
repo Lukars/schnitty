@@ -11,7 +11,8 @@ handlers.generic = function (req,res){
 
 		var ua = req.headers['user-agent'],
 	    	$ = {};
-
+	    console.log(ua);
+	    
 		if (/mobile/i.test(ua)){
 			$.Mobile = true;
 			req.url = '/index.html';
