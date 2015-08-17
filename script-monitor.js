@@ -61,8 +61,8 @@ function paintCanvas() {
 // Function for creating paddles
 function Paddle(pos) {
 	// Height and width
-	this.h = 5;
-	this.w = 250;
+	this.h = 25;
+	this.w = 300;
 	
 	// Paddle's position
 	this.x = W/2 - this.w/2;
@@ -78,7 +78,7 @@ paddles.push(new Paddle("top"));
 ball = {
 	x: 50,
 	y: 50, 
-	r: 5,
+	r: 15,
 	c: "green",
 	vx: 4,
 	vy: 8,
