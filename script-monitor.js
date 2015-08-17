@@ -41,11 +41,6 @@ var canvas = document.getElementById("canvas"),
 		init, // variable to initialize animation
 		paddleHit;
 
-
-// Add mousemove and mousedown events to the canvas
-//canvas.addEventListener("mousemove", trackPosition, true);
-//canvas.addEventListener("mousedown", btnClick, true);
-
 // Initialise the collision sound
 collision = document.getElementById("collide");
 
@@ -95,15 +90,15 @@ ball = {
 
 // Start Button object
 startBtn = {
-	w: 100,
-	h: 50,
-	x: W/2 - 50,
-	y: H/2 - 25,
+	// w: 100,
+	// h: 50,
+	// x: W/2 - 50,
+	// y: H/2 - 25,
 	
 	draw: function() {
-		ctx.strokeStyle = "white";
-		ctx.lineWidth = "2";
-		ctx.strokeRect(this.x, this.y, this.w, this.h);
+		// ctx.strokeStyle = "white";
+		// ctx.lineWidth = "2";
+		// ctx.strokeRect(this.x, this.y, this.w, this.h);
 		
 		ctx.font = "18px Arial, sans-serif";
 		ctx.textAlign = "center";
