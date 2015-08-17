@@ -3,6 +3,10 @@ var  x = 0, y = 0,
     vx = 0, vy = 0,
 	ax = 0, ay = 0;
 
+socket.on('width', function(width){
+	var browserWidth = width;
+});
+
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
 		ax = event.accelerationIncludingGravity.x * 75;
@@ -29,10 +33,6 @@ if (window.DeviceMotionEvent != undefined) {
 		socket.emit('motion', motionX);
 	}, 100);
 }; 
-
-socket.on('width', function(width){
-	var browserWidth = width;
-});
 
 function boundingBoxCheck(){
 	if (x<0) { x = 0; vx = -vx; }
