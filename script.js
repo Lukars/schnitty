@@ -1,10 +1,11 @@
 var socket = io();
 var  x = 0, y = 0,
     vx = 0, vy = 0,
-	ax = 0, ay = 0;
+	ax = 0, ay = 0,
+	browserWidth = 1024;
 
 socket.on('width', function(width){
-	var browserWidth = width;
+	browserWidth = width;
 });
 
 if (window.DeviceMotionEvent != undefined) {
@@ -35,8 +36,8 @@ if (window.DeviceMotionEvent != undefined) {
 }; 
 
 function boundingBoxCheck(){
-	if (x<0) { x = 0; vx = -vx; }
-	if (y<0) { y = 0; vy = -vy; }
+	if (x<0) { x = 0; vx = 0; }
+	//if (y<0) { y = 0; vy = 0; }
 	if (x>browserWidth-200) { x = browserWidth-200; vx = 0; ax = 0; }
 	//if (y>browserHeight-200) { y = browserHeight-200; vy = 0; vy = 0; }
 	
