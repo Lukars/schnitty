@@ -2,4 +2,4 @@
 
 Schnitty is Pong. Schnitty is being controlled via your mobile phone. Schnitty is being played on your computer. Schnitty is using real-time gyrosensor data to give you some good fun. Schnitty will have multiplayer.
 
-(To see Schnitty in action, please navigate to tiny.cc/schnitty)[http://www.tiny.cc/schnitty]
+[To see Schnitty in action, please navigate to tiny.cc/schnitty .](http://www.tiny.cc/schnitty)
