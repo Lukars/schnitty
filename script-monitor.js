@@ -149,6 +149,11 @@ function draw() {
 	}
 	
 	ball.draw();
+	//Get motion from mobile
+	socket.on('motion', function(motionX){
+		mouse.x = motionX;
+		updateLatency();
+	});
 	update();
 }
 
@@ -172,11 +177,6 @@ function update() {
 	
 	// Update scores
 	updateScore(); 
-	//Get motion from mobile
-	socket.on('motion', function(motionX){
-		mouse.x = motionX;
-		updateLatency();
-	});
 	
 	// Move the paddles on mouse move
 	if(mouse.x) {
