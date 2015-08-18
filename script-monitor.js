@@ -167,8 +167,6 @@ function increaseSpd() {
 
 // Function to update positions, score and everything.
 // Basically, the main game logic is defined here
-var timer,
-	timeNow;
 
 function update() {
 	
@@ -177,12 +175,7 @@ function update() {
 	//Get motion from mobile
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
-		timeNow = Date.now();
-		var timeDiff = timeNow - timer;
-		if ( timeDiff > 100){
-			console.log("latency is higher than 100ms: " + timeDiff + "ms");
-		};
-		timer = timeNow;
+		updateLatency();
 	});
 	
 	// Move the paddles on mouse move
@@ -330,6 +323,25 @@ function updateScore() {
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Score: " + points, 20, 20 );
+}
+
+function updateLatency() {
+	var timer,
+		timeNow,
+		timeDiff;
+
+	timeNow = Date.now();
+	timeDiff = timeNow - timer;
+	if ( timeDiff > 100){
+		ctx.fillStlye = "red";
+	} else {
+		ctx.fillStlye = "green";
+	}
+	ctx.font = "26px Arial, sans-serif";
+	ctx.textAlign = "left";
+	ctx.textBaseline = "top";
+	ctx.fillText("Latency: " + timeDiff + "ms", 40, 20 );
+	timer = timeNow;
 }
 
 // Function to run when the game overs
