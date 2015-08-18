@@ -181,7 +181,7 @@ function update() {
 		mouse.x = motionX;
 		timeNow = Date.now();
 		timeDiff = timeNow - timer;
-		highLatCounter = (timeDiff > 100 ? +1 : -1);
+		highLatCounter = (timeDiff > 100 ? highLatCounter++ : highLatCounter--);
 		// if ( timeDiff > 100){
 		// 	highLatCounter++;
 		// } else {
