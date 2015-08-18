@@ -29,8 +29,8 @@ function getOS() {
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
-		ax = event.accelerationIncludingGravity.x * 75;
-		ay = event.accelerationIncludingGravity.y * 35;	
+		ax = event.accelerationIncludingGravity.x * 45;
+		//ay = event.accelerationIncludingGravity.y * 35;	
 	}
 
 	setInterval( function() {

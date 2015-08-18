@@ -325,11 +325,10 @@ function updateScore() {
 	ctx.fillText("Score: " + points, 20, 20 );
 }
 
+var timer,
+	timeNow,
+	timeDiff;
 function updateLatency() {
-	var timer,
-		timeNow,
-		timeDiff;
-
 	timeNow = Date.now();
 	timeDiff = timeNow - timer;
 	if ( timeDiff > 100){
