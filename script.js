@@ -16,15 +16,15 @@ function getOS() {
 
   if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) )
   {
-    os = 'iOS';
+    return 'iOS';
   }
   else if( userAgent.match( /Android/i ) )
   {
-    os = 'Android';
+    return 'Android';
   }
   else
   {
-    os = 'unknown';
+    return 'unknown';
   }
 }
 
