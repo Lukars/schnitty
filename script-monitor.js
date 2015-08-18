@@ -168,7 +168,9 @@ function increaseSpd() {
 // Function to update positions, score and everything.
 // Basically, the main game logic is defined here
 var timer,
-	timeNow;
+	timeNow,
+	timeDiff,
+	highLatCounter=0;
 
 function update() {
 	
@@ -178,10 +180,16 @@ function update() {
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
 		timeNow = Date.now();
-		var timeDiff = timeNow - timer;
-		if ( timeDiff > 100){
-			console.log("latency is higher than 100ms: " + timeDiff + "ms");
-		};
+		timeDiff = timeNow - timer;
+		highLatCounter = (timeDiff > 100 ? +1 : -1);
+		// if ( timeDiff > 100){
+		// 	highLatCounter++;
+		// } else {
+		// 	highLatCounter--;
+		// }
+		if (highLatCounter > 20){
+			console.log("latency is higher than 100ms!");
+		}
 		timer = timeNow;
 	});
 	
