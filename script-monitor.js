@@ -331,11 +331,11 @@ var timer,
 function updateLatency() {
 	timeNow = Date.now();
 	timeDiff = timeNow - timer;
-	if ( timeDiff > 100){
-		ctx.fillStlye = "red";
-	} else {
+	// if ( timeDiff > 100){
+	// 	ctx.fillStlye = "white";
+	// } else {
 		ctx.fillStlye = "green";
-	}
+	// }
 	ctx.font = "26px Arial, sans-serif";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
