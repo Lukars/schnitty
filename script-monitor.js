@@ -156,7 +156,9 @@ function draw() {
 		mouse.x = motionX;
 		timeNow = Date.now();
 		timeDiff = timeNow - timer;
-		updateLatency(timeDiff);
+		if(timeDiff > 100ms){
+			console.log("latency higher than 100ms: " + timeDiff + "ms");
+		}
 		timeNow = timer;
 	});
 	update();
@@ -328,20 +330,6 @@ function updateScore() {
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Score: " + points, 20, 20 );
-}
-
-
-function updateLatency(time) {
-
-	// if ( timeDiff > 100){
-	// 	ctx.fillStlye = "white";
-	// } else {
-		ctx.fillStlye = "green";
-	// }
-	ctx.font = "26px Arial, sans-serif";
-	ctx.textAlign = "left";
-	ctx.textBaseline = "top";
-	ctx.fillText("Latency: " + time + "ms", 20, 60 );
 }
 
 // Function to run when the game overs
