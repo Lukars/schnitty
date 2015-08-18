@@ -339,7 +339,7 @@ function updateLatency() {
 	ctx.font = "26px Arial, sans-serif";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Latency: " + timeDiff + "ms", 40, 20 );
+	ctx.fillText("Latency: " + timeDiff + "ms", 20, 60 );
 	timer = timeNow;
 }
 
