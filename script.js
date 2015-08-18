@@ -52,8 +52,6 @@ function boundingBoxCheck () {
 };
 
 function hide(){
-	var img = document.getElementById('howto');
-	img.attr('display','none');
-	var button = document.getElementById('startbutton');
-	button.attr('display','none');
+	document.getElementById('howto').setAttribute('display','none');
+	document.getElementById('startbutton').setAttribute('display','none');
 }
