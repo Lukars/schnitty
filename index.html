@@ -7,11 +7,15 @@
       body {
         font-family: helvetica, arial, sans serif;
       }
+      #howto{
+        width:100%;height:auto;
+      }
     </style>
   </head>
   <body>
     <div>
-      <button id="startbutton" style="height:150px;width:100%;font-size:30px;" onclick="socket.emit('start', 'true');">Start</button>
+      <img src="holdphonelikethis.gif" id="howto">
+      <button id="startbutton" style="height:150px;width:100%;font-size:30px;" onclick="socket.emit('start', 'true');hide();">Start</button>
       <button id="restartbutton" style="height:150px;width:100%;font-size:30px;" onclick="  socket.emit('restart', 'true');">restart</button>
     </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>

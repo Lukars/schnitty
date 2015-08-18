@@ -50,3 +50,10 @@ function boundingBoxCheck () {
 	if (x<150) { x = 150; vx = 0; }
 	if (x>browserWidth-150) { x = browserWidth-150; vx = 0; ax = 0; }
 };
+
+function hide(){
+	var img = document.getElementById('howto');
+	img.attr('display','none');
+	var button = document.getElementById('startbutton');
+	button.attr('display','none');
+}
