@@ -178,7 +178,7 @@ function update() {
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
 		timeNow = Date.now();
-		if (timeNow - timer > 100){
+		if ((timeNow - timer) > 10){
 			console.log("latency is higher than 100ms");
 		};
 		timer = timeNow;
