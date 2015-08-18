@@ -36,7 +36,7 @@ if (window.DeviceMotionEvent != undefined) {
 	setInterval( function() {
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if ( os === 'Android') {
-			vx = vx + ay;
+			vx = vx - ax;
 			//vy = vy + ax;
 		} else {
 			//vy = vy - ay;
