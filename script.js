@@ -7,6 +7,7 @@ var  x = 0, y = 0,
 
 socket.on('width', function(width){
 	browserWidth = width;
+	alert('width is' + width);
 });
 
 if (window.DeviceMotionEvent != undefined) {

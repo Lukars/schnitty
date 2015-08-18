@@ -1,7 +1,7 @@
 var socket = io();
 
 window.requestAnimFrame = (function(){
-	return  window.requestAnimationFrame       || 
+	return  window.requestAnimationFrame   || 
 		window.webkitRequestAnimationFrame || 
 		window.mozRequestAnimationFrame    || 
 		window.oRequestAnimationFrame      || 
@@ -12,10 +12,10 @@ window.requestAnimFrame = (function(){
 })();
 
 window.cancelRequestAnimFrame = ( function() {
-	return window.cancelAnimationFrame          ||
+	return window.cancelAnimationFrame          	||
 		window.webkitCancelRequestAnimationFrame    ||
 		window.mozCancelRequestAnimationFrame       ||
-		window.oCancelRequestAnimationFrame     ||
+		window.oCancelRequestAnimationFrame     	||
 		window.msCancelRequestAnimationFrame        ||
 		clearTimeout
 } )();
@@ -116,7 +116,7 @@ restartBtn = {
 	
 	draw: function() {
 		ctx.strokeStyle = "white";
-		ctx.lineWidth = "5";
+		ctx.lineWidth = "3";
 		ctx.strokeRect(this.x, this.y, this.w, this.h);
 		
 		ctx.font = "24px Arial, sans-serif";
