@@ -137,9 +137,7 @@ function createParticles(x, y, m) {
 	this.vx = -1.5 + Math.random()*3;
 	this.vy = m * Math.random()*1.5;
 }
-var timer,
-	timeNow,
-	timeDiff;
+
 // Draw everything on canvas
 function draw() {
 	paintCanvas();
@@ -151,16 +149,6 @@ function draw() {
 	}
 	
 	ball.draw();
-	//Get motion from mobile
-	socket.on('motion', function(motionX){
-		mouse.x = motionX;
-		timeNow = Date.now();
-		timeDiff = timeNow - timer;
-		if(timeDiff > 100ms){
-			console.log("latency higher than 100ms: " + timeDiff + "ms");
-		}
-		timeNow = timer;
-	});
 	update();
 }
 
@@ -179,11 +167,23 @@ function increaseSpd() {
 
 // Function to update positions, score and everything.
 // Basically, the main game logic is defined here
+var timer,
+	timeNow;
 
 function update() {
 	
 	// Update scores
 	updateScore(); 
+	//Get motion from mobile
+	socket.on('motion', function(motionX){
+		mouse.x = motionX;
+		timeNow = Date.now();
+		var timeDiff = timeNow - timer;
+		if ( timeDiff > 100){
+			console.log("latency is higher than 100ms: " + timeDiff + "ms");
+		};
+		timer = timeNow;
+	});
 	
 	// Move the paddles on mouse move
 	if(mouse.x) {
