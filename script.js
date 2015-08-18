@@ -3,12 +3,30 @@ var  x = 0, y = 0,
     vx = 0, vy = 0,
 	ax = 0, ay = 0,
 	browserWidth = 1024,
-	secondPlayer=false;
+	secondPlayer=false,
+	os=getOS();
 
 socket.on('width', function(width){
 	browserWidth = width;
 	alert('width is' + width);
 });
+
+function getOS() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) )
+  {
+    os = 'iOS';
+  }
+  else if( userAgent.match( /Android/i ) )
+  {
+    os = 'Android';
+  }
+  else
+  {
+    os = 'unknown';
+  }
+}
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
@@ -32,7 +50,11 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		boundingBoxCheck();
 		
-		motionX = x;
+		if (os = 'Android'){
+			motionX = -x;
+		} else {
+			motionX = x;
+		}
 		multiPlayer();
 	}, 100);
 }; 

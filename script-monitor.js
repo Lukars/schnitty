@@ -351,8 +351,6 @@ function animloop() {
 
 // Function to execute at startup
 function startScreen() {
-	var browserWidth = document.documentElement.clientWidth;
-	socket.emit('width', browserWidth);
 	draw();
 	startBtn.draw();
 }
@@ -363,6 +361,8 @@ function startScreen() {
 // Click start button
 	
 	socket.on('startgame', function (){
+		var browserWidth = document.documentElement.clientWidth;
+		socket.emit('width', browserWidth);
 		animloop();
 		console.log('starting game');
 		// Delete the start button after clicking it
