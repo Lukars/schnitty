@@ -94,16 +94,13 @@ startBtn = {
 	// x: W/2 - 50,
 	// y: H/2 - 25,
 	
-	draw: function() {
-		// ctx.strokeStyle = "white";
-		// ctx.lineWidth = "2";
-		// ctx.strokeRect(this.x, this.y, this.w, this.h);
-		
+	draw: function() {		
 		ctx.font = "24px Arial, sans-serif";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStlye = "white";
-		ctx.fillText("To start open http://tiny.cc/schnitty in your mobile phone browser ( prevent screen rotation for better handling )", W/2, H/2 );
+		ctx.fillText("To start open http://tiny.cc/schnitty in your mobile phone browser", W/2, H/2 );
+		ctx.fillText("prevent screen rotation for better handling, does not work with firefox and requires fast network connection", W/2, H/2+150 );
 	}
 };
 
