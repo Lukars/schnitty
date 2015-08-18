@@ -53,12 +53,13 @@ if (window.DeviceMotionEvent != undefined) {
 		
 		boundingBoxCheck();
 		
-		if (os = 'Android'){
-			motionX = -x;
-		} else {
+		if (os = 'iOS'){
 			motionX = x;
+			socket.emit('motion', motionX);
+		} else {
+			motionX = -x;
+			socket.emit('motion', motionX);
 		}
-		multiPlayer();
 	}, 100);
 }; 
 
@@ -67,16 +68,4 @@ function boundingBoxCheck () {
 	//if (y<0) { y = 0; vy = 0; }
 	if (x>browserWidth-150) { x = browserWidth-150; vx = 0; ax = 0; }
 	//if (y>browserHeight-200) { y = browserHeight-200; vy = 0; vy = 0; }
-};
-
-function setSecondPlayer () {
-	secondPlayer=true;
-};
-
-function multiPlayer () {
-	if (secondPlayer === true){
-		socket.emit('motionPlayer2', motionX);
-	} else{
-		socket.emit('motion', motionX);
-	}
 };
