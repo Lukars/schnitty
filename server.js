@@ -1,5 +1,5 @@
 var http = require ("http");
-var handlers = require('./handlers.js');
+var handlers = require('./lib/handlers.js');
 var server = http.createServer(handler);
 var io = require('socket.io')(server); 
 
