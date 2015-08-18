@@ -29,7 +29,7 @@ function getOS() {
 
 if (window.DeviceMotionEvent != undefined) {
 	window.ondevicemotion = function(e) {
-		ax = event.accelerationIncludingGravity.x * 45;
+		ax = event.accelerationIncludingGravity.x * 35;
 		//ay = event.accelerationIncludingGravity.y * 35;	
 	}
 

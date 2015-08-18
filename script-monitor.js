@@ -137,7 +137,9 @@ function createParticles(x, y, m) {
 	this.vx = -1.5 + Math.random()*3;
 	this.vy = m * Math.random()*1.5;
 }
-
+var timer,
+	timeNow,
+	timeDiff;
 // Draw everything on canvas
 function draw() {
 	paintCanvas();
@@ -152,7 +154,10 @@ function draw() {
 	//Get motion from mobile
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
-		updateLatency();
+		timeNow = Date.now();
+		timeDiff = timeNow - timer;
+		updateLatency(timeDiff);
+		timeNow = timer;
 	});
 	update();
 }
@@ -325,12 +330,9 @@ function updateScore() {
 	ctx.fillText("Score: " + points, 20, 20 );
 }
 
-var timer,
-	timeNow,
-	timeDiff;
-function updateLatency() {
-	timeNow = Date.now();
-	timeDiff = timeNow - timer;
+
+function updateLatency(time) {
+
 	// if ( timeDiff > 100){
 	// 	ctx.fillStlye = "white";
 	// } else {
@@ -339,8 +341,7 @@ function updateLatency() {
 	ctx.font = "26px Arial, sans-serif";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Latency: " + timeDiff + "ms", 20, 60 );
-	timer = timeNow;
+	ctx.fillText("Latency: " + time + "ms", 20, 60 );
 }
 
 // Function to run when the game overs
