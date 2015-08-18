@@ -16,14 +16,17 @@ function getOS() {
 
   if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) )
   {
+    alert ('iOS');
     return 'iOS';
   }
   else if( userAgent.match( /Android/i ) )
   {
+    alert ('Android');
     return 'Android';
   }
   else
   {
+    alert ('unknown');
     return 'unknown';
   }
 }
