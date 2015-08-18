@@ -8,7 +8,6 @@ var  x = 0, y = 0,
 
 socket.on('width', function(width){
 	browserWidth = width;
-	alert('width is' + width);
 });
 
 function getOS() {
@@ -16,17 +15,14 @@ function getOS() {
 
   if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) )
   {
-    alert ('iOS');
     return 'iOS';
   }
   else if( userAgent.match( /Android/i ) )
   {
-    alert ('Android');
     return 'Android';
   }
   else
   {
-    alert ('unknown');
     return 'unknown';
   }
 }
@@ -42,6 +38,8 @@ if (window.DeviceMotionEvent != undefined) {
 		if ( landscapeOrientation) {
 			vx = vx + ay;
 			vy = vy + ax;
+		} else if (os = 'Android'){
+			vx = vx + ay;
 		} else {
 			vy = vy - ay;
 			vx = vx + ax;
@@ -52,14 +50,8 @@ if (window.DeviceMotionEvent != undefined) {
 		x = parseInt(x + vx / 50);
 		
 		boundingBoxCheck();
-		
-		if (os = 'iOS'){
-			motionX = x;
-			socket.emit('motion', motionX);
-		} else {
-			motionX = -x;
-			socket.emit('motion', motionX);
-		}
+		socket.emit('motion', x);
+
 	}, 100);
 }; 
 
