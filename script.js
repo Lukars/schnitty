@@ -35,22 +35,21 @@ if (window.DeviceMotionEvent != undefined) {
 
 	setInterval( function() {
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
-		if ( landscapeOrientation) {
+		if ( os === 'Android') {
 			vx = vx + ay;
-			vy = vy + ax;
-		} else if (os = 'Android'){
-			vx = vx + ay;
+			//vy = vy + ax;
 		} else {
-			vy = vy - ay;
+			//vy = vy - ay;
 			vx = vx + ax;
 		}
 		vx = vx * 0.98;
-		vy = vy * 0.98;
-		y = parseInt(y + vy / 50);
+		//vy = vy * 0.98;
+		//y = parseInt(y + vy / 50);
 		x = parseInt(x + vx / 50);
 		
 		boundingBoxCheck();
-		socket.emit('motion', x);
+		motionX = x;
+		socket.emit('motion', motionX);
 
 	}, 100);
 }; 
