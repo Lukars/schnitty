@@ -31,7 +31,7 @@ handlers.generic = function (req,res){
 		contentType = 'image/x-icon';
 	}
 
-	fs.readFile(__dirname + "/../" + req.url, function (err, data){
+	fs.readFile(__dirname + "/.." + req.url, function (err, data){
 		if (err){
 			fs.readFile(__dirname + "/../client/404.html", function (err, data){
 				res.writeHead(404);
