@@ -1,5 +1,5 @@
 var fs = require('fs');
-var index = fs.readFileSync(__dirname + '../client/index.html');
+var index = fs.readFileSync(__dirname + '/../client/index.html');
 var handlers = {};
 
 handlers.generic = function (req,res){
