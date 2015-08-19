@@ -1,4 +1,6 @@
 var socket = io();
+var browserWidth = document.documentElement.clientWidth;
+
 
 window.requestAnimFrame = (function(){
 	return  window.requestAnimationFrame   || 
@@ -21,55 +23,51 @@ window.cancelRequestAnimFrame = ( function() {
 } )();
 
 var canvas = document.getElementById("canvas"),
-		ctx = canvas.getContext("2d"), // Create canvas context
-		W = window.innerWidth, // Window's width
-		H = window.innerHeight, // Window's height
-		particles = [], // Array containing particles
-		ball = {}, // Ball object
-		paddles = [2], // Array containing two paddles
-		mouse = {}, // Mouse object to store it's current position
-		points = 0, // Varialbe to store points
-		fps = 60, // Max FPS (frames per second)
-		particlesCount = 20, // Number of sparks when ball strikes the paddle
-		flag = 0, // Flag variable which is changed on collision
-		particlePos = {}, // Object to contain the position of collision 
-		multipler = 1, // Varialbe to control the direction of sparks
-		startBtn = {}, // Start button object
-		restartBtn = {}, // Restart button object
-		over = 0, // flag varialbe, cahnged when the game is over
-		init, // variable to initialize animation
+		ctx = canvas.getContext("2d"),
+		W = window.innerWidth,
+		H = window.innerHeight,
+		particles = [],//array of particles for collision ball/paddle
+		ball = {},
+		paddles = [2],
+		mouse = {}, //mouse object for steering paddles
+		points = 0,
+		fps = 60,
+		particlesCount = 20, //amount of particles to be emitted when ball collides with paddle
+		flag = 0, //flag changes on collision
+		particlePos = {}, //contains the position of collision
+		multipler = 1, // controls direction of sparks
+		startScreen = {},
+		restartBtn = {},
+		over = 0,//flags game over
+		init, //initialize animation
 		paddleHit;
 
-// Initialise the collision sound
+//init collision sound
 collision = document.getElementById("collide");
 
-// Set the canvas's height and width to full screen
+//set canvas to full screen
 canvas.width = W;
 canvas.height = H;
 
-// Function to paint canvas
 function paintCanvas() {
 	ctx.fillStyle = "black";
 	ctx.fillRect(0, 0, W, H);
 }
-
-// Function for creating paddles
+//set paddle size and position
 function Paddle(pos) {
-	// Height and width
 	this.h = 25;
 	this.w = 300;
 	
-	// Paddle's position
 	this.x = W/2 - this.w/2;
 	this.y = (pos == "top") ? 0 : H - this.h;
 	
 }
 
-// Push two new paddles into the paddles[] array
+//now push into paddle array
 paddles.push(new Paddle("bottom"));
 paddles.push(new Paddle("top"));
 
-// Ball object
+//set ball position, radius, color and speed
 ball = {
 	x: 50,
 	y: 50, 
@@ -77,8 +75,8 @@ ball = {
 	c: "green",
 	vx: 4,
 	vy: 8,
-	
-	// Function for drawing ball on canvas
+
+	//draw ball on canvas
 	draw: function() {
 		ctx.beginPath();
 		ctx.fillStyle = this.c;
@@ -87,27 +85,22 @@ ball = {
 	}
 };
 
-// Start Button object
-startBtn = {
-	// w: 100,
-	// h: 50,
-	// x: W/2 - 50,
-	// y: H/2 - 25,
-
+//set startscreen font, textalign, color, text and position
+startScreen = {
+	
 	draw: function() {		
 		ctx.font = "24px Arial, sans-serif";
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.fillStlye = "white";
-		ctx.fillText("To start open http://tiny.cc/schnitty in your mobile phone browser", W/2, H/2 );
-		ctx.fillText("prevent screen rotation for better handling, does not work with firefox and requires fast network connection", W/2, H/2+150 );
+		ctx.fillText("To start open http://tiny.cc/schnitty in your mobile phone browser.", W/2, H/2 );
+		ctx.fillText("Prevent screen rotation for better handling, does not work with firefox and requires fast network connection.", W/2, H/2+150 );
 		var img = document.getElementById('qr');
-		ctx.drawImage(img, W/2, H/2 -150);
-
+		ctx.drawImage(img, W/2-100, H/2-250);
 	}
 };
 
-// Restart Button object
+//set restartbutton font, textalign, color, text and position 
 restartBtn = {
 	w: 100,
 	h: 50,
@@ -127,7 +120,7 @@ restartBtn = {
 	}
 };
 
-// Function for creating particles object
+//create particles, set radius and randomize emission
 function createParticles(x, y, m) {
 	this.x = x || 0;
 	this.y = y || 0;
@@ -138,7 +131,7 @@ function createParticles(x, y, m) {
 	this.vy = m * Math.random()*1.5;
 }
 
-// Draw everything on canvas
+//draw everything on canvas
 function draw() {
 	paintCanvas();
 	for(var i = 0; i < paddles.length; i++) {
@@ -152,7 +145,7 @@ function draw() {
 	update();
 }
 
-// Function to increase speed after every 5 points
+//increase speed after for collisions to raise difficulty
 function increaseSpd() {
 	if(points % 4 == 0) {
 		if(Math.abs(ball.vx) < 15) {
@@ -162,11 +155,7 @@ function increaseSpd() {
 	}
 }
 
-
-
-
-// Function to update positions, score and everything.
-// Basically, the main game logic is defined here
+// variables to count latency to keep track of playability
 var timer,
 	timeNow,
 	timeDiff,
@@ -174,38 +163,34 @@ var timer,
 
 function update() {
 	
-	// Update scores
 	updateScore(); 
-	//Get motion from mobile
+	// movement arrives via socket
 	socket.on('motion', function(motionX){
 		mouse.x = motionX;
 		timeNow = Date.now();
-		timeDiff = timeNow - timer;
+		timeDiff = timeNow - timer; //calculate latency and console log if lat is high
 		highLatCounter = (timeDiff > 100 ? highLatCounter++ : highLatCounter--);
-		// if ( timeDiff > 100){
-		// 	highLatCounter++;
-		// } else {
-		// 	highLatCounter--;
-		// }
 		if (highLatCounter > 20){
 			console.log("latency is higher than 100ms!");
 		}
 		timer = timeNow;
 	});
 	
-	// Move the paddles on mouse move
+	// if movement exists assign it to paddles
 	if(mouse.x) {
-		for(var i = 1; i < paddles.length; i++) {
-			p = paddles[i];
-			p.x = mouse.x - p.w/2;
-		}		
+		// for(var i = 1; i < paddles.length; i++) { //both paddles move alike
+		// 	p = paddles[i];
+		// 	p.x = mouse.x - p.w/2;
+		// }
+		paddles[1].x = mouse.x - paddles[1].w/2; //paddles are inverted to increase difficulty
+		paddles[2].x = browserWidth - (mouse.x - paddles[2].w/2) - 300;		
 	}
 	
-	// Move the ball
+	//actual ball movement by adding speed value to coordinates
 	ball.x += ball.vx;
 	ball.y += ball.vy;
 	
-	// Collision with paddles
+	//collision ball with paddles
 	p1 = paddles[1];
 	p2 = paddles[2];
 
@@ -220,8 +205,7 @@ function update() {
 	} 
 	
 	else {
-		// Collide with walls, If the ball hits the top/bottom,
-		// walls, run gameOver() function
+		//if ball hits floor game is over
 		if(ball.y + ball.r > H) {
 			ball.y = H - ball.r;
 			gameOver();
@@ -231,9 +215,7 @@ function update() {
 			ball.y = ball.r;
 			gameOver();
 		}
-		
-		// If ball strikes the vertical walls, invert the 
-		// x-velocity vector of ball
+		// if ball hits walls invert the x-vector
 		if(ball.x + ball.r > W) {
 			ball.vx = -ball.vx;
 			ball.x = W - ball.r;
@@ -245,23 +227,19 @@ function update() {
 		}
 	}
 	
-	// If flag is set, push the particles
+	//if flag is set emit particles
 	if(flag == 1) { 
 		for(var k = 0; k < particlesCount; k++) {
 			particles.push(new createParticles(particlePos.x, particlePos.y, multiplier));
 		}
 	}	
 	
-	// Emit particles/sparks
 	emitParticles();
 	
-	// reset flag
 	flag = 0;
 }
 
-
-//Function to check collision between ball and one of
-//the paddles
+//check collision paddles/ball
 function collides(b, p) {
 	if(b.x + ball.r >= p.x && b.x - ball.r <=p.x + p.w) {
 		if(b.y >= (p.y - p.h) && p.y > 0){
@@ -278,7 +256,7 @@ function collides(b, p) {
 	}
 }
 
-//Do this when collides == true
+//on collision set ball and particle coordinates and direction
 function collideAction(ball, p) {
 	ball.vy = -ball.vy;
 	
@@ -309,8 +287,6 @@ function collideAction(ball, p) {
 	flag = 1;
 }
 
-
-// Function for emitting particles
 function emitParticles() { 
 	for(var j = 0; j < particles.length; j++) {
 		par = particles[j];
@@ -325,13 +301,12 @@ function emitParticles() {
 		par.x += par.vx; 
 		par.y += par.vy; 
 		
-		// Reduce radius so that the particles die after a few seconds
+		//particles die after certain distance
 		par.radius = Math.max(par.radius - 0.05, 0.0); 
 		
 	} 
 }
 
-// Function for updating score
 function updateScore() {
 	ctx.fillStlye = "white";
 	ctx.font = "26px Arial, sans-serif";
@@ -340,7 +315,6 @@ function updateScore() {
 	ctx.fillText("Score: " + points, 20, 20 );
 }
 
-// Function to run when the game overs
 function gameOver() {
 	ctx.fillStlye = "white";
 	ctx.font = "30px Arial, sans-serif";
@@ -348,68 +322,48 @@ function gameOver() {
 	ctx.textBaseline = "middle";
 	ctx.fillText("Game Over - You scored "+points+" points!", W/2, H/2 + 25 );
 	
-	// Stop the Animation
+	//stop animation
 	cancelRequestAnimFrame(init);
 	
-	// Set the over flag
 	over = 1;
 	
-	// Show the restart button
+	//show restart button
 	restartBtn.draw();
 }
 
-
-// Function for running the whole animation
+//running all the animation
 function animloop() {
 	init = requestAnimFrame(animloop);
 	draw();
 }
 
-// Function to execute at startup
-function startScreen() {
+function initStartScreen() {
 	draw();
-	startBtn.draw();
+	startScreen.draw();
 }
 
-// On button click (Restart and start)
+//startbutton was pressed on mobile to run game	
+socket.on('startgame', function (){
+	socket.emit('width', browserWidth);
+	animloop();
+	console.log('starting game');
+	startScreen = {};
+} );
 	
-
-// Click start button
-	
-	socket.on('startgame', function (){
-		var browserWidth = document.documentElement.clientWidth;
-		socket.emit('width', browserWidth);
-		animloop();
-		console.log('starting game');
-		// Delete the start button after clicking it
-		startBtn = {};
-	} );
-	
-	// If the game is over, and the restart button is clicked
 		
-	socket.on('restartgame', function (){
-		if(over == 1) {
-		console.log('restarting game');
-			ball.x = 20;
-			ball.y = 20;
-			points = 0;
-			ball.vx = 2;
-			ball.vy = 2;
-			animloop();
-			
-			over = 0;
-		}
-	});
+//restartbutton was pressed on mobile, start over		
+socket.on('restartgame', function (){
+	if(over == 1) {
+	console.log('restarting game');
+		ball.x = 20;
+		ball.y = 20;
+		points = 0;
+		ball.vx = 2;
+		ball.vy = 2;
+		animloop();
+		
+		over = 0;
+	}
+});
 
-// Show the start screen
-startScreen();
-
-
-
-
-
-
-
-
-
-
+initStartScreen();
