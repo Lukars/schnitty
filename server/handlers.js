@@ -41,7 +41,7 @@ handlers.generic = function (req,res){
 		}
 		else {
 			res.writeHead(200, {'Content-Type' : contentType});
-	    	res.write(fs.readFileSync(__dirname + req.url));
+	    	res.write(fs.readFileSync(__dirname + "/../" + req.url));
     		res.end();
 		}
 	});
