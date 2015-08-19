@@ -8,9 +8,9 @@ handlers.generic = function (req,res){
 
 	if(req.url === '/'){
 		if (ua.indexOf("Mobile") > -1){
-			req.url = '/client/index.html';
+			req.url = '/../client/index.html';
 		} else {
-		req.url = '/client/monitor.html';
+		req.url = '/../client/monitor.html';
 		}
 	}
 
