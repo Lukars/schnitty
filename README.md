@@ -11,3 +11,10 @@ Schnitty is Pong. Schnitty is being controlled via your mobile phone. Schnitty i
 - multiplayer will be implemented after it has been showcased
 - the paddles sometimes look a bit laggy because the game is being rendered with 60fps, but steering data is only transmitted every 50ms(in case of low latency!)
 - has not been tested with blackberry or windows phone, feedback appreciated
+- at the moment does only support a single session
+
+## Todo:
+- implement multiple sessions
+- implement multiplayer
+- implement leaderboard
+- enhance mobile UI
